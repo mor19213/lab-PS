@@ -1,0 +1,8 @@
+
+**** Build of configuration Debug for project uart ****
+
+"C:\\ti\\ccs1031\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+gmake: *** No rule to make target 'all'.
+
+**** Build Finished ****
