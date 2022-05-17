@@ -39,16 +39,33 @@ void IntToString(int num, char *str){
 
 
 void UARTInt(int num){
-    // Loop while there are more characters to send.
-    char* str;
+
+    int enviar = 0, ceros = 0, contar =1;
+    char str;
     int mod = 0;
-    while(num > 0){
+    while (num != 0) {
         mod = num % 10;
-        //*str = (char*)(mod + 48);
-        IntToString(mod, str);
-        UARTCharPut(UART0_BASE, *str);
-        SysCtlDelay(100*(SysCtlClockGet()/3/1000));
+        enviar = enviar * 10 + mod;
         num /= 10;
+        if (mod == 0 && contar==1){
+            ceros++;
+        } else if(mod !=0){
+            contar = 0;
+        }
+      }
+    while(enviar > 0){
+        mod = enviar % 10;
+        str = (char)(mod + 48);
+        UARTCharPut(UART0_BASE, str);
+        SysCtlDelay(100*(SysCtlClockGet()/3/1000));
+        enviar /= 10;
+    }
+    while (ceros > 0){
+        str = (char)(48);
+        UARTCharPut(UART0_BASE, str);
+        SysCtlDelay(100*(SysCtlClockGet()/3/1000));
+        ceros--;
+
     }
 }
 
@@ -69,28 +86,6 @@ void UARTIntHandler(void){
 
 void Timer0IntHandler(void){
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-    if (GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2)){
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
-    } else {
-        if (azul == 1){
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
-        }
-    }
-    if (GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1)){
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
-    } else {
-        if (rojo == 1){
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-        }
-    }
-    if (GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3)){
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
-    } else {
-        if (verde == 1){
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
-        }
-    }
-
 }
 void InitUART(void){
     /*Enable the GPIO Port A*/
@@ -140,9 +135,7 @@ int main(void)
            //
            SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
-           //
            // Check if the peripheral access is enabled.
-           //
            while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF))
            {
            }
@@ -170,17 +163,42 @@ int main(void)
        TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
        IntMasterEnable();
        TimerEnable(TIMER0_BASE, TIMER_A);
-       char* str[50];
-       //sprintf(&str, "%d", 42);
-       int num = 5;
-       //IntToString(num, 1);
-       *str = (char*)(num + 48);
-       //IntToString(2, 1, str1);
-       //IntToString(3, 1, str2);
-       //*str = strcat(str1, str2);
-       UARTSend(*str, 1);
+
+       int num = 820100, enviar = 0, ceros = 0, contar =1;
+       char str;
+       int mod = 0;
+       while (num != 0) {
+           mod = num % 10;
+           enviar = enviar * 10 + mod;
+           num /= 10;
+           if (mod == 0 && contar==1){
+               ceros++;
+           } else if(mod !=0){
+               contar = 0;
+           }
+         }
+       while(enviar > 0){
+           mod = enviar % 10;
+           str = (char)(mod + 48);
+           UARTCharPut(UART0_BASE, str);
+           SysCtlDelay(100*(SysCtlClockGet()/3/1000));
+           enviar /= 10;
+       }
+       while (ceros > 0){
+           str = (char)(48);
+           UARTCharPut(UART0_BASE, str);
+           SysCtlDelay(100*(SysCtlClockGet()/3/1000));
+           UARTCharPut(UART0_BASE, str);
+           SysCtlDelay(100*(SysCtlClockGet()/3/1000));
+           ceros--;
+
+       }
        //UARTInt(num);
        while(1){
+           num = rand();
+           UARTInt(num);
+           SysCtlDelay(2000*(SysCtlClockGet()/3/1000));
+           UARTCharPut(UART0_BASE, (char)(10));
            }
 
 }
