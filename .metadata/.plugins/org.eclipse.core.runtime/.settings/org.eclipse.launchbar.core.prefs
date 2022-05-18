@@ -2,7 +2,7 @@ LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
 activeLaunchTarget=null\:---
-configDescList=org.eclipse.launchbar.core.descriptorType.default\:lab6,org.eclipse.launchbar.core.descriptorType.default\:laboratorio12,org.eclipse.launchbar.core.descriptorType.default\:proyecto,org.eclipse.launchbar.core.descriptorType.default\:uart
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:uart,org.eclipse.launchbar.core.descriptorType.default\:lab6,org.eclipse.launchbar.core.descriptorType.default\:laboratorio12,org.eclipse.launchbar.core.descriptorType.default\:proyecto,org.eclipse.launchbar.core.descriptorType.default\:proyecto4,org.eclipse.launchbar.core.descriptorType.default\:proyecto2
 eclipse.preferences.version=1
 org.eclipse.launchbar.core.descriptorType.default\:lab6/activeLaunchMode=debug
 org.eclipse.launchbar.core.descriptorType.default\:lab6/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

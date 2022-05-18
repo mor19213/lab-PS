@@ -29,6 +29,7 @@ proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/fpu.h
 proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/rom.h
 proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/uart.h
 proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/utils/uartstdio.h
+proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/tm4c123gh6pm.h
 
 ../proyecto.c:
 
@@ -87,4 +88,6 @@ C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/rom.h:
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/uart.h:
 
 C:/ti/TivaWare_C_Series-2.1.4.178/utils/uartstdio.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/inc/tm4c123gh6pm.h:
 

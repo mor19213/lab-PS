@@ -9134,3 +9134,351 @@ com.ti.ccstudio.debug.launch.LaunchValidationException
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 14:34:29.453
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 14:34:29.455
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 14:34:29.456
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+!SESSION 2022-05-17 17:06:38.216 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:06:43.183
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:06:43.183
+!MESSAGE debugServerDir=C:/ti/ccs1031/ccs/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.ui 1 0 2022-05-17 17:06:53.998
+!MESSAGE CCS IDE session started!
+	CCS build: 10.3.1.00003
+	CCS location: C:/ti/ccs1031/ccs
+	Workspace location: C:/Users/danie/OneDrive/Desktop/lab-PS
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.258
+!MESSAGE constructor
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.258
+!MESSAGE done with directories
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.258
+!MESSAGE loading ti_logger
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.268
+!MESSAGE Platform os: win32
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.268
+!MESSAGE loading cToolsIF
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.268
+!MESSAGE loading cTools
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.278
+!MESSAGE loading TraceFactory
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.278
+!MESSAGE loading sqlite3
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.278
+!MESSAGE loading CloudTrace
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:06:54.298
+!MESSAGE CloudTrace interface loaded
+
+!ENTRY com.ti.ccstudio.project.ui.webcontent 1 0 2022-05-17 17:06:54.388
+!MESSAGE CCS HTTP adapter started! [ccs.port:54140] - Open 'http://localhost:54140/ide' in web browser to see listing of available APIs...
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 17:19:57.287
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 17:19:57.288
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+!SESSION 2022-05-17 17:19:57.651 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.ti.ccstudio.branding.product -data file:/C:/Users/danie/OneDrive/Desktop/lab-PS/ -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:20:03.709
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:20:03.710
+!MESSAGE debugServerDir=C:/ti/ccs1031/ccs/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.ui 1 0 2022-05-17 17:20:42.684
+!MESSAGE CCS IDE session started!
+	CCS build: 10.3.1.00003
+	CCS location: C:/ti/ccs1031/ccs
+	Workspace location: C:/Users/danie/OneDrive/Desktop/lab-PS
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.102
+!MESSAGE constructor
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.104
+!MESSAGE done with directories
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.105
+!MESSAGE loading ti_logger
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.107
+!MESSAGE Platform os: win32
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.108
+!MESSAGE loading cToolsIF
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.153
+!MESSAGE loading cTools
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.203
+!MESSAGE loading TraceFactory
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.243
+!MESSAGE loading sqlite3
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.433
+!MESSAGE loading CloudTrace
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:20:43.553
+!MESSAGE CloudTrace interface loaded
+
+!ENTRY com.ti.ccstudio.project.ui.webcontent 1 0 2022-05-17 17:20:43.683
+!MESSAGE CCS HTTP adapter started! [ccs.port:54656] - Open 'http://localhost:54656/ide' in web browser to see listing of available APIs...
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 17:27:25.952
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 17:27:25.952
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 17:27:25.952
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 17:27:25.952
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+!SESSION 2022-05-17 17:27:26.204 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -data file:/C:/Users/danie/OneDrive/Desktop/lab-PS/ -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:27:28.423
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:27:28.423
+!MESSAGE debugServerDir=C:/ti/ccs1031/ccs/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.ui 1 0 2022-05-17 17:27:40.245
+!MESSAGE CCS IDE session started!
+	CCS build: 10.3.1.00003
+	CCS location: C:/ti/ccs1031/ccs
+	Workspace location: C:/Users/danie/OneDrive/Desktop/lab-PS
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.591
+!MESSAGE constructor
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.592
+!MESSAGE done with directories
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.594
+!MESSAGE loading ti_logger
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.602
+!MESSAGE Platform os: win32
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.603
+!MESSAGE loading cToolsIF
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.606
+!MESSAGE loading cTools
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.609
+!MESSAGE loading TraceFactory
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.612
+!MESSAGE loading sqlite3
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.614
+!MESSAGE loading CloudTrace
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:27:40.639
+!MESSAGE CloudTrace interface loaded
+
+!ENTRY com.ti.ccstudio.project.ui.webcontent 1 0 2022-05-17 17:27:40.755
+!MESSAGE CCS HTTP adapter started! [ccs.port:54801] - Open 'http://localhost:54801/ide' in web browser to see listing of available APIs...
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 17:40:51.905
+!MESSAGE DS_ERROR: CORTEX_M4_0: Error: Timed out while waiting for target powerup/polling a hardware resource.
+
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-17 17:49:27.783
+!MESSAGE Indexed 'ADC+DAC' (3 sources, 27 headers) in 0.466 sec: 1,184 declarations; 7,292 references; 0 unresolved inclusions; 1 syntax errors; 17 unresolved names (0.2 %)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 17:51:24.210
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: C:\Users\danie\OneDrive\Desktop\lab-PS\ADC+DAC\Debug\ADC+DAC.out Could not open file
+
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-17 17:52:33.137
+!MESSAGE Indexed 'ADC_DAC' (3 sources, 24 headers) in 0.346 sec: 854 declarations; 6,927 references; 0 unresolved inclusions; 1 syntax errors; 17 unresolved names (0.22 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-17 17:55:22.120
+!MESSAGE Indexed 'ADC_DAC' (4 sources, 27 headers) in 0.327 sec: 1,193 declarations; 7,376 references; 0 unresolved inclusions; 1 syntax errors; 17 unresolved names (0.2 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-17 17:56:09.871
+!MESSAGE Indexed 'DAC_ADC' (3 sources, 27 headers) in 0.39 sec: 1,184 declarations; 7,292 references; 0 unresolved inclusions; 1 syntax errors; 17 unresolved names (0.2 %)
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 17:58:06.949
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+!SESSION 2022-05-17 17:58:07.214 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -data file:/C:/Users/danie/OneDrive/Desktop/lab-PS/ -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:58:09.339
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 17:58:09.349
+!MESSAGE debugServerDir=C:/ti/ccs1031/ccs/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.ui 1 0 2022-05-17 17:58:21.231
+!MESSAGE CCS IDE session started!
+	CCS build: 10.3.1.00003
+	CCS location: C:/ti/ccs1031/ccs
+	Workspace location: C:/Users/danie/OneDrive/Desktop/lab-PS
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.511
+!MESSAGE constructor
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.521
+!MESSAGE done with directories
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.521
+!MESSAGE loading ti_logger
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.521
+!MESSAGE Platform os: win32
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.521
+!MESSAGE loading cToolsIF
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.531
+!MESSAGE loading cTools
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.531
+!MESSAGE loading TraceFactory
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.531
+!MESSAGE loading sqlite3
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.541
+!MESSAGE loading CloudTrace
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 17:58:21.561
+!MESSAGE CloudTrace interface loaded
+
+!ENTRY com.ti.ccstudio.project.ui.webcontent 1 0 2022-05-17 17:58:21.761
+!MESSAGE CCS HTTP adapter started! [ccs.port:55020] - Open 'http://localhost:55020/ide' in web browser to see listing of available APIs...
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-17 17:59:45.012
+!MESSAGE Indexed 'proyecto3' (3 sources, 27 headers) in 1.5 sec: 1,184 declarations; 7,292 references; 0 unresolved inclusions; 1 syntax errors; 17 unresolved names (0.2 %)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 18:00:13.931
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: C:\Users\danie\OneDrive\Desktop\lab-PS\proyecto3\Debug\proyecto3.out Could not open file
+
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-17 18:01:26.197
+!MESSAGE Indexed 'proyecto4' (3 sources, 27 headers) in 0.52 sec: 1,184 declarations; 7,292 references; 0 unresolved inclusions; 1 syntax errors; 17 unresolved names (0.2 %)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 18:15:58.977
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: C:\Users\danie\OneDrive\Desktop\lab-PS\proyecto4\Debug\proyecto4.out Could not open file
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 18:15:58.978
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: C:\Users\danie\OneDrive\Desktop\lab-PS\proyecto4\Debug\proyecto4.out Could not open file
+
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 18:24:42.809
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 18:24:42.811
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 18:24:42.812
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+
+!ENTRY org.eclipse.core.jobs 2 2 2022-05-17 18:24:42.813
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.debug.internal.ui.DebugUIPlugin$2
+!SESSION 2022-05-17 18:24:43.087 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product -data file:/C:/Users/danie/OneDrive/Desktop/lab-PS/ -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 18:24:45.227
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 1 0 2022-05-17 18:24:45.231
+!MESSAGE debugServerDir=C:/ti/ccs1031/ccs/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.ui 1 0 2022-05-17 18:24:57.206
+!MESSAGE CCS IDE session started!
+	CCS build: 10.3.1.00003
+	CCS location: C:/ti/ccs1031/ccs
+	Workspace location: C:/Users/danie/OneDrive/Desktop/lab-PS
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.505
+!MESSAGE constructor
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.505
+!MESSAGE done with directories
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.505
+!MESSAGE loading ti_logger
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.505
+!MESSAGE Platform os: win32
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.505
+!MESSAGE loading cToolsIF
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.515
+!MESSAGE loading cTools
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.515
+!MESSAGE loading TraceFactory
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.515
+!MESSAGE loading sqlite3
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.526
+!MESSAGE loading CloudTrace
+
+!ENTRY com.ti.dbgtrc.webapp.CloudTraceInterface 0 0 2022-05-17 18:24:57.569
+!MESSAGE CloudTrace interface loaded
+
+!ENTRY com.ti.ccstudio.project.ui.webcontent 1 0 2022-05-17 18:24:57.709
+!MESSAGE CCS HTTP adapter started! [ccs.port:55119] - Open 'http://localhost:55119/ide' in web browser to see listing of available APIs...
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 18:50:04.142
+!MESSAGE DS_ERROR: CORTEX_M4_0: Error: Debug Port error occurred.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 18:50:04.152
+!MESSAGE DS_ERROR: CORTEX_M4_0: Trouble Halting Target CPU 
+

@@ -12,7 +12,6 @@
 #include "driverlib/timer.h"
 #include "driverlib/uart.h"
 #include "utils/uartstdio.h"
-
 #include <string.h>
 
  void uartIntHandler(void);
@@ -80,8 +79,31 @@ void UARTSend(const char *pui8Buffer, uint32_t ui32Count){
 
 
 void UARTIntHandler(void){
-    uart_rx();
-    //UARTCharPut(UART0_BASE, 'a');
+    //uart_rx();
+    uint32_t ui32Status;
+
+    // Get the interrrupt status.
+    //
+    //ui32Status = ROM_UARTIntStatus(UART0_BASE, true);
+    ui32Status = UARTIntStatus(UART0_BASE, true);
+
+    //
+    // Clear the asserted interrupts.
+    //
+    //ROM_UARTIntClear(UART0_BASE, ui32Status);
+    UARTIntClear(UART0_BASE, ui32Status);
+    // Loop while there are characters in the receive FIFO.
+    //
+    char ch[100];
+    int i = 0;
+    while(UARTCharsAvail(UART0_BASE))
+    {
+        //
+        // Read the next character from the UART and write it back to the UART.
+        ch[i] = UARTCharGetNonBlocking(UART0_BASE);
+        i++;
+    }
+
 }
 
 void Timer0IntHandler(void){
@@ -150,8 +172,6 @@ int main(void)
 
            IntMasterEnable();
            IntEnable(INT_UART0);
-
-
            InitUART();
 
        SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
@@ -163,7 +183,7 @@ int main(void)
        TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
        IntMasterEnable();
        TimerEnable(TIMER0_BASE, TIMER_A);
-
+/*
        int num = 820100, enviar = 0, ceros = 0, contar =1;
        char str;
        int mod = 0;
@@ -192,14 +212,16 @@ int main(void)
            SysCtlDelay(100*(SysCtlClockGet()/3/1000));
            ceros--;
 
-       }
+       }*/
        //UARTInt(num);
-       while(1){
-           num = rand();
+       int num = 89;
+       while(1){);
            UARTInt(num);
            SysCtlDelay(2000*(SysCtlClockGet()/3/1000));
            UARTCharPut(UART0_BASE, (char)(10));
-           }
+           num += 3;
+//           num = rand(
+       }
 
 }
 
