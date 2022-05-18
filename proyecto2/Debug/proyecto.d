@@ -14,6 +14,9 @@ proyecto.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/mac
 proyecto.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/sys/_stdint.h
 proyecto.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdio.h
 proyecto.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdarg.h
+proyecto.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdlib.h
+proyecto.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/string.h
+proyecto.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/xlocale/_string.h
 proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h
 proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_ints.h
 proyecto.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h
@@ -58,6 +61,12 @@ C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/sys/_stdint.h:
 C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdio.h:
 
 C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdarg.h:
+
+C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdlib.h:
+
+C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/string.h:
+
+C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/xlocale/_string.h:
 
 C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h:
 
