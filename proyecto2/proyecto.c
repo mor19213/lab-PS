@@ -32,20 +32,22 @@
 #define SPI_FREC  4000000  // Frecuencia para el reloj del SPI
 #define SPI_ANCHO      16  // N�mero de bits que se env�an cada vez, entre 4 y 16
 
-float y_n = 0;
-float x_n = 0;
+float yn = 0, yn_1=0, yn_2=0, yn_3=0, yn_4=0;
+float xn = 0, xn_1=0, xn_2=0, xn_3=0, xn_4=0;
 
 int i = 0;
 uint16_t cont = 0;
 uint16_t salida = 0;
 uint32_t recibido = 0;
 
-int modo = 0; // 0 - live, 1 - on-D
+int modo = 0, live = 1; // 0 - live, 1 - on-D
 int proceso = 0;
-int num_muestras_ond = 5000; // muestras a enviar en on-demand
-char* StrNumMuestras[];
-char* StrN0[], StrN1[], StrN2[], StrN3[], StrN4[], StrD0[], StrD1[], StrD2[], StrD3[], StrD4[];
-float n0=0, n1=0, n2=0, n3=0, n4=0, d0=0, d1=0, d2=0, d3=0, d4=0;
+float NumMuestrasD = 5000; // muestras a enviar en on-demand
+char StrNumMuestras[10];
+int DigNumMuesD = 0, DigCoef = 0;
+
+char StrN0[5], StrN1[5], StrN2[5], StrN3[5], StrN4[5], StrD0[5], StrD1[5], StrD2[5], StrD3[5], StrD4[5];
+float b0=0, b1=0, b2=0, b3=0, b4=0, a0=0, a1=0, a2=0, a3=0, a4=0;
 
 
 void InitUART(void);
@@ -138,160 +140,183 @@ void UARTIntHandler(void){
     while(UARTCharsAvail(UART0_BASE))
     {
         ch = UARTCharGetNonBlocking(UART0_BASE);
-        if (proceso == 0){
-            switch (ch){
-            case 68: // "D" on-demand, recibir la cantidad de muestras a enviar
-                modo = 1;
-                proceso = 1;
-                *StrNumMuestras = strcpy(*StrNumMuestras, "");
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2); // azul
-                break;
-            case 76: // "L" Live, no se recibe nada mas
-                modo = 2;
-                break;
-            case 84: // "T" Tiva, recibir los coeficientes
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
-                proceso = 1;
-                modo = 3;
-                *StrD0 = strcpy(*StrD0, "");
-                *StrD1 = strcpy(*StrD1, "");
-                *StrD2 = strcpy(*StrD2, "");
-                *StrD3 = strcpy(*StrD3, "");
-                *StrD4 = strcpy(*StrD4, "");
-                *StrN0 = strcpy(*StrN0, "");
-                *StrN1 = strcpy(*StrN1, "");
-                *StrN2 = strcpy(*StrN2, "");
-                *StrN3 = strcpy(*StrN3, "");
-                *StrN4 = strcpy(*StrN4, "");
-                break;
-            case 82: // "R" Record,
-                proceso = 1;
-                modo = 6;
-                break;
-            }
-        }
 
         if (proceso == 1 && modo == 1){
-            if (ch == 44){
+            if (ch == 10){
                 proceso = 0;
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0); // azul
+                //GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0); // azul
+                //strcpy(StrNumMuestras, "4500");
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
+                NumMuestrasD = atof(StrNumMuestras);
+                DigNumMuesD = 0;
             } else {
-                *StrNumMuestras = strcat(*StrNumMuestras, ch);
+                StrNumMuestras[DigNumMuesD] = ch;
+                //strcat(StrNumMuestras, ch);
+                DigNumMuesD++;
             }
         } else if (modo == 3){
             //UARTSend("tiva", 4);
             switch (proceso){
                     case 1:
                         if (ch == 44){
-                            d0 = atof(StrD0);
+                            a0 = atof(StrD0);
                             proceso++;
+                            DigCoef = 0;
                             //UARTSend("coef", 4);
                         } else {
-                            *StrD0 = strcat(*StrD0, ch);
+                            StrD0[DigCoef] = ch;
+                            DigCoef++;
                         }
                         break;
                     case 2:
                         if (ch == 44){
-                            d1 = atof(StrD1);
+                            a1 = atof(StrD1);
                             proceso++;
                             //UARTSend("coef", 4);
+                            DigCoef = 0;
                         } else {
-                            *StrD1 = strcat(*StrD1, ch);
+                            StrD1[DigCoef] = ch;
+                            DigCoef++;
+//                            *StrD1 = strcat(*StrD1, ch);
                         }
                         break;
                     case 3:
                         if (ch == 44){
-                            d2 = atof(StrD2);
+                            a2 = atof(StrD2);
                             proceso++;
+                            DigCoef = 0;
                             //UARTSend("coef", 4);
                         } else {
-                            *StrD2 = strcat(*StrD2, ch);
+                            StrD2[DigCoef] = ch;
+                            DigCoef++;
+//                            *StrD2 = strcat(*StrD2, ch);
                         }
                         break;
                     case 4:
                         if (ch == 44){
-                            d3 = atof(StrD3);
+                            a3 = atof(StrD3);
                             proceso++;
+                            DigCoef = 0;
                             //UARTSend("coef", 4);
                         } else {
-                            *StrD3 = strcat(*StrD3, ch);
+                            StrD3[DigCoef] = ch;
+                            DigCoef++;
+//                            *StrD3 = strcat(*StrD3, ch);
                         }
                         break;
                     case 5:
                         if (ch == 44){
-                            d4 = atof(StrD4);
+                            a4 = atof(StrD4);
                             proceso++;
+                            DigCoef = 0;
                             //UARTSend("coef", 4);
                         } else {
-                            *StrD4 = strcat(*StrD4, ch);
+                            StrD4[DigCoef] = ch;
+                            DigCoef++;
+                            //*StrD4 = strcat(*StrD4, ch);
                         }
                         break;
                     case 6:
                         if (ch == 44){
-                            n0 = atof(StrN0);
+                            b0 = atof(StrN0);
                             proceso++;
+                            DigCoef = 0;
                             //UARTSend("coef", 4);
                         } else {
-                            *StrN0 = strcat(*StrN0, ch);
+                            StrN0[DigCoef] = ch;
+                            DigCoef++;
+//                            *StrN0 = strcat(*StrN0, ch);
                         }
                         break;
                     case 7:
                         if (ch == 44){
-                            n1 = atof(StrN1);
+                            b1 = atof(StrN1);
                             proceso++;
+                            DigCoef = 0;
                             //UARTSend("coef", 4);
                         } else {
-                            *StrN1 = strcat(*StrN1, ch);
+                            StrN1[DigCoef] = ch;
+                            DigCoef++;
+                            //*StrN1 = strcat(*StrN1, ch);
                         }
                         break;
                     case 8:
                         if (ch == 44){
-                            n2 = atof(StrN2);
+                            b2 = atof(StrN2);
                             proceso++;
+                            DigCoef = 0;
                             //UARTSend("coef", 4);
                         } else {
-                            *StrN2 = strcat(*StrN2, ch);
+                            StrN2[DigCoef] = ch;
+                            DigCoef++;
+                            //*StrN2 = strcat(*StrN2, ch);
                         }
                         break;
                     case 9:
                         if (ch == 44){
-                            n3 = atof(StrN3);
+                            b3 = atof(StrN3);
                             proceso++;
-                            //UARTSend("coef", 4);
+                            DigCoef = 0;//UARTSend("coef", 4);
                         } else {
-                            *StrN3 = strcat(*StrN3, ch);
+                            StrN3[DigCoef] = ch;
+                            DigCoef++;
+                            //*StrN3 = strcat(*StrN3, ch);
                         }
                         break;
                     case 10:
-                        if (ch == 44){
-                            n4 = atof(StrN4);
+                        if (ch == 10){
+                            b4 = atof(StrN4);
                             proceso=0;
-                            //UARTSend("coef", 4);
+                            DigCoef = 0;//UARTSend("coef", 4);
                             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0); // rojo
                         } else {
-                            *StrN4 = strcat(*StrN4, ch);
+                            StrN4[DigCoef] = ch;
+                            DigCoef++;
+                            //*StrN4 = strcat(*StrN4, ch);
                         }
                         break;
 
                     }
         }
-        num_muestras_ond = atof(StrNumMuestras);
-        if (proceso == 2)
-    }
-    float recibido = atof(StrD1);
-    /*
-    if (strncmp("bruno", ch, 5)){
-        UARTSend("Burrito", 7);
-    } else {
-        UARTSend("no bruno :(", 7);
+        if (proceso == 0){
+                    switch (ch){
+                    case 68: // "D" on-demand, recibir la cantidad de muestras a enviar
+                        NumMuestrasD = 0;
+                        modo = 1;
+                        live = 0;
+                        proceso = 1;
+                        strcpy(StrNumMuestras, "");
+                        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2); // azul
+                        break;
+                    case 76: // "L" Live, no se recibe nada mas
+                        modo = 2;
+                        live = 1;
+                        break;
+                    case 84: // "T" Tiva, recibir los coeficientes
+                        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
+                        proceso = 1;
+                        modo = 3;
+                        strcpy(StrD0, "");
+                        strcpy(StrD1, "");
+                        strcpy(StrD2, "");
+                        strcpy(StrD3, "");
+                        strcpy(StrD4, "");
+                        strcpy(StrN0, "");
+                        strcpy(StrN1, "");
+                        strcpy(StrN2, "");
+                        strcpy(StrN3, "");
+                        strcpy(StrN4, "");
+                        break;
+                    case 82: // "R" Record, recibir la cantidad de muestras
+                        proceso = 1;
+                        modo = 6;
+                        break;
+                    }
+                }
+
 
     }
-*/
-    if ( recibido > 0 ){
-        UARTSend("MAyor", 5);
-    } else if (recibido < 0){
-        UARTSend("Menor", 5);
-    }
+
 }
 
 
@@ -305,7 +330,7 @@ Timer0IntHandler(void) //DAC
     // Clear the timer interrupt. Necesario para lanzar la pr�xima interrupci�n.
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 
-    salida = y_n;   // ENVIAR DATO SALIDO DEL FILTRO
+    salida = yn;   // ENVIAR DATO SALIDO DEL FILTRO
     pui32DataTx[0] = (uint32_t)((0b0111 << 12) | (0x0FFF & salida));
 
     // Send data
@@ -335,11 +360,25 @@ Timer1IntHandler(void)
 
     // Read ADC Value.
     ADCSequenceDataGet(ADC0_BASE, 3, pui32ADC0Value);
-    y_n = pui32ADC0Value[0];
-    x_n = pui32ADC0Value[0];
-
-    if (modo == 0){ // ENVIAR
-    } else{
+    xn_1=xn;
+    xn_2=xn_1;
+    xn_3=xn_2;
+    xn_4=xn_3;
+    xn = pui32ADC0Value[0];
+    yn_1=yn;
+    yn_2=yn_1;
+    yn_3=yn_2;
+    yn_4=yn_3;
+    yn = - a1*yn_1 - a2*yn_2 - a3*yn_3 - a4*yn_4 + b0*xn + b1*xn_1 + b2*xn_2 + b3*xn_3 + b4*xn_4;
+    if (live == 1){ // ENVIAR LIVE
+        UARTInt(xn);
+        UARTCharPut(UART0_BASE, (char)(10));
+    } else if ( live == 0){ // Enviar on-Demand
+        if (NumMuestrasD > 0){
+            UARTInt(xn);
+            UARTCharPut(UART0_BASE, (char)(10));
+            NumMuestrasD--;
+        }
     }
 }
 
@@ -477,9 +516,11 @@ main(void)
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3);  // verde
     // -----------------------------------------------------------------------
     while(1){
+        /*
         UARTInt(num);
         SysCtlDelay(400*(SysCtlClockGet()/3/1000));
         UARTCharPut(UART0_BASE, (char)(10));
         num += 3;
+        */
     }
 }
