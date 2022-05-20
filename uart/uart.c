@@ -79,7 +79,7 @@ void UARTSend(const char *pui8Buffer, uint32_t ui32Count){
 
 
 void UARTIntHandler(void){
-    //uart_rx();
+    uart_rx();
     uint32_t ui32Status;
 
     // Get the interrrupt status.
@@ -94,6 +94,7 @@ void UARTIntHandler(void){
     UARTIntClear(UART0_BASE, ui32Status);
     // Loop while there are characters in the receive FIFO.
     //
+    /*
     char ch[100];
     int i = 0;
     while(UARTCharsAvail(UART0_BASE))
@@ -102,7 +103,7 @@ void UARTIntHandler(void){
         // Read the next character from the UART and write it back to the UART.
         ch[i] = UARTCharGetNonBlocking(UART0_BASE);
         i++;
-    }
+    }*/
 
 }
 
@@ -173,7 +174,7 @@ int main(void)
            IntMasterEnable();
            IntEnable(INT_UART0);
            InitUART();
-
+/*
        SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
        // CONFIG del timer0 como temporizador periodico
        TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);
@@ -183,6 +184,7 @@ int main(void)
        TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
        IntMasterEnable();
        TimerEnable(TIMER0_BASE, TIMER_A);
+       */
 /*
        int num = 820100, enviar = 0, ceros = 0, contar =1;
        char str;
@@ -215,7 +217,7 @@ int main(void)
        }*/
        //UARTInt(num);
        int num = 89;
-       while(1){);
+       while(1){
            UARTInt(num);
            SysCtlDelay(2000*(SysCtlClockGet()/3/1000));
            UARTCharPut(UART0_BASE, (char)(10));

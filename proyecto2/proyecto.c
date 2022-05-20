@@ -1,5 +1,5 @@
 /*
- * ADC y DAC
+ * ADC y DAC y UART
  * proyecto (2)
  */
 
@@ -38,18 +38,27 @@ float x_n = 0;
 int i = 0;
 uint16_t cont = 0;
 uint16_t salida = 0;
+uint32_t recibido = 0;
+
 int modo = 0; // 0 - live, 1 - on-D
-int num_coef_grab = 0; // coeficientes para la grabación
+int proceso = 0;
 int num_muestras_ond = 5000; // muestras a enviar en on-demand
-int num_muestras_grab = 100; // muestras que a guardar en la grabacion
-int muetras_grab[1000]; // grabacion
-uint32_t var;
-char* buffer[500];
+char* StrNumMuestras[];
+char* StrN0[], StrN1[], StrN2[], StrN3[], StrN4[], StrD0[], StrD1[], StrD2[], StrD3[], StrD4[];
+float n0=0, n1=0, n2=0, n3=0, n4=0, d0=0, d1=0, d2=0, d3=0, d4=0;
 
 
 void InitUART(void);
 void UARTInt(int num);
-
+void UARTSend(const char *pui8Buffer, uint32_t ui32Count);
+void UARTSend(const char *pui8Buffer, uint32_t ui32Count){
+    // Loop while there are more characters to send.
+    while(ui32Count--){
+        // Write the next character to the UART.
+        //UARTCharPutNonBlocking(UART0_BASE, *pui8Buffer++);
+        UARTCharPut(UART0_BASE, *pui8Buffer++);
+    }
+}
 
 void UARTInt(int num){
 
@@ -84,6 +93,7 @@ void UARTInt(int num){
         }
     }
 }
+
 void InitUART(void){
     /*Enable the GPIO Port A*/
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
@@ -110,7 +120,6 @@ void InitUART(void){
 //*****************************************************************************
 
 void UARTIntHandler(void){
-    //uart_rx();
     uint32_t ui32Status;
 
     // Get the interrrupt status.
@@ -125,16 +134,164 @@ void UARTIntHandler(void){
     UARTIntClear(UART0_BASE, ui32Status);
     // Loop while there are characters in the receive FIFO.
     //
-    char ch[100];
-    int i = 0;
+    char ch;
     while(UARTCharsAvail(UART0_BASE))
     {
-        //
-        // Read the next character from the UART
-        ch[i] = UARTCharGetNonBlocking(UART0_BASE);
-        i++;
+        ch = UARTCharGetNonBlocking(UART0_BASE);
+        if (proceso == 0){
+            switch (ch){
+            case 68: // "D" on-demand, recibir la cantidad de muestras a enviar
+                modo = 1;
+                proceso = 1;
+                *StrNumMuestras = strcpy(*StrNumMuestras, "");
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2); // azul
+                break;
+            case 76: // "L" Live, no se recibe nada mas
+                modo = 2;
+                break;
+            case 84: // "T" Tiva, recibir los coeficientes
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
+                proceso = 1;
+                modo = 3;
+                *StrD0 = strcpy(*StrD0, "");
+                *StrD1 = strcpy(*StrD1, "");
+                *StrD2 = strcpy(*StrD2, "");
+                *StrD3 = strcpy(*StrD3, "");
+                *StrD4 = strcpy(*StrD4, "");
+                *StrN0 = strcpy(*StrN0, "");
+                *StrN1 = strcpy(*StrN1, "");
+                *StrN2 = strcpy(*StrN2, "");
+                *StrN3 = strcpy(*StrN3, "");
+                *StrN4 = strcpy(*StrN4, "");
+                break;
+            case 82: // "R" Record,
+                proceso = 1;
+                modo = 6;
+                break;
+            }
+        }
+
+        if (proceso == 1 && modo == 1){
+            if (ch == 44){
+                proceso = 0;
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0); // azul
+            } else {
+                *StrNumMuestras = strcat(*StrNumMuestras, ch);
+            }
+        } else if (modo == 3){
+            //UARTSend("tiva", 4);
+            switch (proceso){
+                    case 1:
+                        if (ch == 44){
+                            d0 = atof(StrD0);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrD0 = strcat(*StrD0, ch);
+                        }
+                        break;
+                    case 2:
+                        if (ch == 44){
+                            d1 = atof(StrD1);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrD1 = strcat(*StrD1, ch);
+                        }
+                        break;
+                    case 3:
+                        if (ch == 44){
+                            d2 = atof(StrD2);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrD2 = strcat(*StrD2, ch);
+                        }
+                        break;
+                    case 4:
+                        if (ch == 44){
+                            d3 = atof(StrD3);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrD3 = strcat(*StrD3, ch);
+                        }
+                        break;
+                    case 5:
+                        if (ch == 44){
+                            d4 = atof(StrD4);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrD4 = strcat(*StrD4, ch);
+                        }
+                        break;
+                    case 6:
+                        if (ch == 44){
+                            n0 = atof(StrN0);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrN0 = strcat(*StrN0, ch);
+                        }
+                        break;
+                    case 7:
+                        if (ch == 44){
+                            n1 = atof(StrN1);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrN1 = strcat(*StrN1, ch);
+                        }
+                        break;
+                    case 8:
+                        if (ch == 44){
+                            n2 = atof(StrN2);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrN2 = strcat(*StrN2, ch);
+                        }
+                        break;
+                    case 9:
+                        if (ch == 44){
+                            n3 = atof(StrN3);
+                            proceso++;
+                            //UARTSend("coef", 4);
+                        } else {
+                            *StrN3 = strcat(*StrN3, ch);
+                        }
+                        break;
+                    case 10:
+                        if (ch == 44){
+                            n4 = atof(StrN4);
+                            proceso=0;
+                            //UARTSend("coef", 4);
+                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0); // rojo
+                        } else {
+                            *StrN4 = strcat(*StrN4, ch);
+                        }
+                        break;
+
+                    }
+        }
+        num_muestras_ond = atof(StrNumMuestras);
+        if (proceso == 2)
     }
-    float recibido = atof(ch);
+    float recibido = atof(StrD1);
+    /*
+    if (strncmp("bruno", ch, 5)){
+        UARTSend("Burrito", 7);
+    } else {
+        UARTSend("no bruno :(", 7);
+
+    }
+*/
+    if ( recibido > 0 ){
+        UARTSend("MAyor", 5);
+    } else if (recibido < 0){
+        UARTSend("Menor", 5);
+    }
 }
 
 
@@ -300,6 +457,25 @@ main(void)
     InitUART();
 
     int num = 0;
+
+    // ------------------------ CONFIG LEDS ----------------------------------
+    // Enable the GPIO port that is used for the on-board LED.
+    //
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+
+    // Check if the peripheral access is enabled.
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF))
+    {
+    }
+
+    //
+    // Enable the GPIO pin for the LED (PG2).  Set the direction as output, and
+    // enable the GPIO pin for digital function.
+    //
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);  // azul
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1);  // rojo
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3);  // verde
+    // -----------------------------------------------------------------------
     while(1){
         UARTInt(num);
         SysCtlDelay(400*(SysCtlClockGet()/3/1000));

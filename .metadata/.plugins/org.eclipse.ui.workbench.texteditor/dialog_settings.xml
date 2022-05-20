@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="UARTSend"/>
 		<list key="findhistory">
+			<item value="uartsend"/>
 			<item value="uart"/>
 			<item value="uuu"/>
 			<item value="y1_n"/>
