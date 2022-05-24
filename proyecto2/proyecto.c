@@ -42,12 +42,14 @@ uint32_t recibido = 0;
 
 int modo = 0, live = 1; // 0 - live, 1 - on-D
 int proceso = 0;
-float NumMuestrasD = 5000; // muestras a enviar en on-demand
+int grabacion[1000];
+float NumMuestrasD = 5000, NumMuestrasR = 0;
+int MuestraR=1, grabar=0; // muestras a enviar en on-demand
 char StrNumMuestras[10];
-int DigNumMuesD = 0, DigCoef = 0;
+int DigNumMues = 0, DigCoef = 0;
 
 char StrN0[5], StrN1[5], StrN2[5], StrN3[5], StrN4[5], StrD0[5], StrD1[5], StrD2[5], StrD3[5], StrD4[5];
-float b0=0, b1=0, b2=0, b3=0, b4=0, a0=0, a1=0, a2=0, a3=0, a4=0;
+float b0=1, b1=0, b2=0, b3=0, b4=0, a0=0, a1=0, a2=0, a3=0, a4=0;
 
 
 void InitUART(void);
@@ -148,11 +150,11 @@ void UARTIntHandler(void){
                 //strcpy(StrNumMuestras, "4500");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
                 NumMuestrasD = atof(StrNumMuestras);
-                DigNumMuesD = 0;
+                DigNumMues = 0;
             } else {
-                StrNumMuestras[DigNumMuesD] = ch;
+                StrNumMuestras[DigNumMues] = ch;
                 //strcat(StrNumMuestras, ch);
-                DigNumMuesD++;
+                DigNumMues++;
             }
         } else if (modo == 3){
             //UARTSend("tiva", 4);
@@ -277,7 +279,18 @@ void UARTIntHandler(void){
                         break;
 
                     }
-        }
+        } else if (proceso == 1 && modo == 4){
+            if (ch == 10){
+                proceso = 0;
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
+                NumMuestrasR = atof(StrNumMuestras);
+                DigNumMues = 0;
+                MuestraR = 0;
+                grabar = 1;
+            } else {
+                StrNumMuestras[DigNumMues] = ch;
+                DigNumMues++;
+            }
         if (proceso == 0){
                     switch (ch){
                     case 68: // "D" on-demand, recibir la cantidad de muestras a enviar
@@ -294,6 +307,7 @@ void UARTIntHandler(void){
                         break;
                     case 84: // "T" Tiva, recibir los coeficientes
                         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
+                        //NumMuestrasR = 0;
                         proceso = 1;
                         modo = 3;
                         strcpy(StrD0, "");
@@ -309,7 +323,7 @@ void UARTIntHandler(void){
                         break;
                     case 82: // "R" Record, recibir la cantidad de muestras
                         proceso = 1;
-                        modo = 6;
+                        modo = 4;
                         break;
                     }
                 }
@@ -318,12 +332,11 @@ void UARTIntHandler(void){
     }
 
 }
-
+}
 
 
 void
-Timer0IntHandler(void) //DAC
-{
+Timer0IntHandler(void){
     uint32_t pui32DataTx[NUM_SPI_DATA]; // la funci�n put pide tipo uint32_t
     uint8_t ui32Index;
 
@@ -370,6 +383,11 @@ Timer1IntHandler(void)
     yn_3=yn_2;
     yn_4=yn_3;
     yn = - a1*yn_1 - a2*yn_2 - a3*yn_3 - a4*yn_4 + b0*xn + b1*xn_1 + b2*xn_2 + b3*xn_3 + b4*xn_4;
+    if (yn < 0){
+        yn = 0;
+    } else if (yn > 4095){
+        yn = 4095;
+    }
     if (live == 1){ // ENVIAR LIVE
         UARTInt(xn);
         UARTCharPut(UART0_BASE, (char)(10));
@@ -378,6 +396,12 @@ Timer1IntHandler(void)
             UARTInt(xn);
             UARTCharPut(UART0_BASE, (char)(10));
             NumMuestrasD--;
+        }
+    }
+    if (grabar == 1){
+        if (NumMuestrasR >= MuestraR){
+            grabacion[MuestraR] = xn;
+            MuestraR++;
         }
     }
 }

@@ -6,8 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="ch"/>
+		<item key="selection" value="NumMuestrasD"/>
 		<list key="findhistory">
+			<item value="NumMuestrasD"/>
+			<item value="NumMuestrasR"/>
+			<item value="DigNumMuesD"/>
+			<item value="y_n"/>
+			<item value="x_n"/>
+			<item value="num_muestras"/>
 			<item value="ch"/>
 			<item value="uartsend"/>
 			<item value="uart"/>
@@ -15,6 +21,9 @@
 			<item value="y1_n"/>
 		</list>
 		<list key="replacehistory">
+			<item value="DigNumMues"/>
+			<item value="yn"/>
+			<item value="xn"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
