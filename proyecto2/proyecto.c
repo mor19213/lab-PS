@@ -329,6 +329,8 @@ void UARTIntHandler(void){
                         proceso = 1;
                         modo = 4;
                         break;
+                    case 83: // "S" Stop, parar live
+                        live = 0;
                     }
                 }
 
