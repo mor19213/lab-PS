@@ -40,7 +40,7 @@ uint16_t cont = 0;
 uint16_t salida = 0;
 uint32_t recibido = 0;
 
-int modo = 0, live = 1; // 0 - live, 1 - on-D
+int modo = 0, live = 0, demand = 0; // 0 - live, 1 - on-D
 int proceso = 0;
 int grabacion[1000];
 float NumMuestrasD = 5000, NumMuestrasR = 0;
@@ -156,7 +156,8 @@ void UARTIntHandler(void){
                 //strcat(StrNumMuestras, ch);
                 DigNumMues++;
             }
-        } else if (modo == 3){
+        }
+        if (modo == 3){
             //UARTSend("tiva", 4);
             switch (proceso){
                     case 1:
@@ -291,12 +292,14 @@ void UARTIntHandler(void){
                 StrNumMuestras[DigNumMues] = ch;
                 DigNumMues++;
             }
+            UARTSend("proc", 4);
+        }
         if (proceso == 0){
                     switch (ch){
                     case 68: // "D" on-demand, recibir la cantidad de muestras a enviar
                         NumMuestrasD = 0;
                         modo = 1;
-                        live = 0;
+                        demand = 1;
                         proceso = 1;
                         strcpy(StrNumMuestras, "");
                         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2); // azul
@@ -309,6 +312,7 @@ void UARTIntHandler(void){
                         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // rojo
                         //NumMuestrasR = 0;
                         proceso = 1;
+                        UARTSend("TIVA", 4);
                         modo = 3;
                         strcpy(StrD0, "");
                         strcpy(StrD1, "");
@@ -331,7 +335,7 @@ void UARTIntHandler(void){
 
     }
 
-}
+
 }
 
 
@@ -391,7 +395,7 @@ Timer1IntHandler(void)
     if (live == 1){ // ENVIAR LIVE
         UARTInt(xn);
         UARTCharPut(UART0_BASE, (char)(10));
-    } else if ( live == 0){ // Enviar on-Demand
+    } else if ( demand == 1){ // Enviar on-Demand
         if (NumMuestrasD > 0){
             UARTInt(xn);
             UARTCharPut(UART0_BASE, (char)(10));
