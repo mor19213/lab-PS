@@ -6,19 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="NumMuestrasD"/>
+		<item key="selection" value=" "/>
 		<list key="findhistory">
+			<item value=" "/>
+			<item value="//L "/>
+			<item value=" L "/>
+			<item value="L "/>
+			<item value="RECI"/>
+			<item value="reci"/>
+			<item value="proceso"/>
+			<item value="live"/>
+			<item value="grabar"/>
 			<item value="NumMuestrasD"/>
 			<item value="NumMuestrasR"/>
 			<item value="DigNumMuesD"/>
 			<item value="y_n"/>
 			<item value="x_n"/>
 			<item value="num_muestras"/>
-			<item value="ch"/>
-			<item value="uartsend"/>
-			<item value="uart"/>
-			<item value="uuu"/>
-			<item value="y1_n"/>
 		</list>
 		<list key="replacehistory">
 			<item value="DigNumMues"/>
