@@ -444,9 +444,7 @@ Timer0IntHandler(void){
         }
     }
     else if (live == 1){ // ENVIAR LIVE
-        //banderita = 1;
-        UARTInt(xn);
-        UARTCharPut(UART0_BASE, (char)(10));
+        banderita = 1;
         }
     if (grabar == 1){
         if (NumMuestrasR >= MuestraR){
@@ -572,11 +570,11 @@ main(void)
         UARTCharPut(UART0_BASE, (char)(10));
         num += 3;
         */
-        /*
+
     if (banderita == 1){
-            UARTInt(xn);
-            UARTCharPut(UART0_BASE, (char)(10));
-        banderita = 0;
-    }*/
+        UARTInt(xn);
+        UARTCharPut(UART0_BASE, (char)(10));
+        SysCtlDelay((SysCtlClockGet()/1000));
+    }
     }
 }
