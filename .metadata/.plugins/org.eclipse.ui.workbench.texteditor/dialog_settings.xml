@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=" "/>
+		<item key="selection" value="GPIO"/>
 		<list key="findhistory">
+			<item value="GPIO"/>
 			<item value=" "/>
 			<item value="//L "/>
 			<item value=" L "/>
@@ -22,7 +23,6 @@
 			<item value="DigNumMuesD"/>
 			<item value="y_n"/>
 			<item value="x_n"/>
-			<item value="num_muestras"/>
 		</list>
 		<list key="replacehistory">
 			<item value="DigNumMues"/>
